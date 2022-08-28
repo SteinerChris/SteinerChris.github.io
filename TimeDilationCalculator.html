@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>HTML Forms</h2>
+
+
+  <label for="speed">Percent Of Light:</label><br>
+  <input type="text" id="speed" name="speed" value="0"onclick="this.select()"><br>
+  <label for="timeMultiplier">Time Multiplied by:</label><br>
+  <input type="text" id="timeMultiplier" name="lname" value="1"onclick="this.select()"><br><br>
+ <button type="button" onclick="update()"> Submit </button>
+	<script>
+		var c = 299792458;
+		var speedBox = document.getElementById("speed");
+		var multiplierBox = document.getElementById("timeMultiplier");
+		
+		var prevSpeed = speedBox.value;
+		var prevMult = multiplierBox.value;
+		
+		
+		function update(){
+			let currSpeed = speedBox.value;
+			let currMult = multiplierBox.value;
+			
+			if(prevSpeed!=currSpeed){
+				multiplierBox.value = 1/Math.sqrt(1-(currSpeed/100*c * currSpeed/100*c)/(c*c));
+			}else if (currMult!=prevMult){
+				speedBox.value = Math.sqrt(c*c*(1-1/(currMult*currMult)))/c*100;
+			}
+			prevSpeed = currSpeed;
+			prevMult = currMult;
+		}
+		
+	</script>
+
+
+
+</body>
+</html>
